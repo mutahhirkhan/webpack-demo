@@ -1,14 +1,16 @@
 let carousels = document.getElementsByClassName('image-carousel');
+console.log('connected');
 
 [].forEach.call(carousels, function (c) {
+    console.log(c);
     let next = c.getElementsByClassName('next')[0],
         prev = c.getElementsByClassName('prev')[0],
-        bubblesContainer = c.getElementsByClassName('bubbles')[0],
+        bubblesContainer = document.getElementsByClassName('bubbles')[0],
         inner = c.getElementsByClassName('inner')[0],
-        // imgs = inner.querySelectorAll('.train'),
-        imgs = inner.getElementsByTagName('img'),
+        imgs = inner.querySelectorAll('.train'),
+        // imgs = inner.getElementsByTagName('img'),
         currentImageIndex = 0,
-        width = 640,
+        width = 90,
         bubbles = [];
         
         console.log(imgs)
@@ -17,6 +19,7 @@ let carousels = document.getElementsByClassName('image-carousel');
         b.classList.add('bubble');
         bubblesContainer.appendChild(b);
         bubbles.push(b);
+        console.log('bubbles in process')
 
         b.addEventListener('click', function () {
             currentImageIndex = i;
@@ -25,7 +28,8 @@ let carousels = document.getElementsByClassName('image-carousel');
     }
 
     function switchImg () {
-        inner.style.left = -width * currentImageIndex + 'px';
+        // console.log(-width * currentImageIndex + 'vw')
+        inner.style.left = -width * currentImageIndex + 'vw';
         
         bubbles.forEach(function (b, i) {
             if (i === currentImageIndex) {
@@ -58,5 +62,3 @@ let carousels = document.getElementsByClassName('image-carousel');
 
     switchImg();
 });
-
-console.log('hi i am new')
