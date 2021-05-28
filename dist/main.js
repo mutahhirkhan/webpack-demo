@@ -1,6 +1,299 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./dist/image-carousel.js":
+/*!********************************!*\
+  !*** ./dist/image-carousel.js ***!
+  \********************************/
+/***/ (() => {
+
+let carousels = document.getElementsByClassName('image-carousel');
+let tab = document.querySelectorAll(".tab");
+var inner = document.querySelector(".inner")
+var arrival = document.querySelector(".arrival")
+var departure = document.querySelector(".departure")
+var nextFn = new Function();
+var prevFn  = new Function();
+
+var htmlMakeUp = (index, name, time, trainNumber, volume) => {
+    if(index < 1){
+        inner.innerHTML=""
+    inner.insertAdjacentHTML('afterbegin', `
+        <div>
+            <div class="train arrival">
+                <div class="train1 trainGrid">
+                    <div class="info">
+                        <div class="infoLeftBar"></div>
+                        <div class="infoContent"><h2>Aret Suppelementary</h2></div>
+                    </div>
+                    <div class="time flex"><h1>15:16</h1></div>
+                    <div class="name tabContent">
+                        <b>Saint-Quentin</b>
+                        <p>TER | 747474</p></div>
+                    <div class="volume flex">
+                        <b>voie</b>
+                        <h1>15</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="prev prevArrival" listner="true"></div>
+        </div>
+
+        <div>
+            <div class="train departure">
+                <div class="train1 trainGrid">
+                    <div class="info">
+                        <div class="infoLeftBar"></div>
+                        <div class="infoContent"><h2>Aret Suppelementary</h2></div>
+                    </div>
+                    <div class="time flex"><h1>15:16</h1></div>
+                    <div class="name tabContent">
+                        <b>Saint-Quentin</b>
+                        <p>TER | 747474</p></div>
+                    <div class="volume flex">
+                        <b>voie</b>
+                        <h1>15</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="next nextDeparture" listner="true"></div>
+        </div>
+    `)
+    }   
+    else {
+    var arrival = document.querySelector(".arrival")
+    arrival.insertAdjacentHTML('beforeend', `
+        <div class="train1 trainGrid">
+            <div class="info">
+                <div class="infoLeftBar"></div>
+                <div class="infoContent"><h2>Aret Suppelementary</h2></div>
+            </div>
+            <div class="time flex"><h1>15:16</h1></div>
+            <div class="name tabContent">
+                <b>Saint-Quentin</b>
+                <p>TER | 747474</p></div>
+            <div class="volume flex">
+                <b>voie</b>
+                <h1>15</h1>
+            </div>
+        </div>
+    `)
+    var departure = document.querySelector(".departure")
+    departure.insertAdjacentHTML('beforeend', `
+        <div class="train1 trainGrid">
+            <div class="info">
+                <div class="infoLeftBar"></div>
+                <div class="infoContent"><h2>Aret Suppelementary</h2></div>
+            </div>
+            <div class="time flex"><h1>15:16</h1></div>
+            <div class="name tabContent">
+                <b>Saint-Quentin</b>
+                <p>TER | 747474</p></div>
+            <div class="volume flex">
+                <b>voie</b>
+                <h1>15</h1>
+            </div>
+        </div>
+    `)
+}
+
+
+
+
+
+}
+
+var toggleTab = (e) => {
+    var tab1 = [];
+
+        for (let i = 0; i < 4; i++) {
+            tab1.push(
+                tr1 = {
+                    name:`i'm one ${i+1}`,
+                    time: `${Math.ceil(Math.random()*12)}:${Math.ceil(Math.random()*61)}`,
+                    trainNumber: Math.ceil(Math.random()*1000),
+                    volume: Math.ceil(Math.random()*60),
+                },
+            )            
+        }
+    if(e.currentTarget.id === 'tab1') 
+    {
+        //fetch tab 1 data here
+        
+        inner.innerHTML = "";
+        // arrival.innerHTML = " "
+        tab1.forEach((element, index)=> {
+            // console.log(index+1 + "times")
+            htmlMakeUp(index, element.name, element.time, element.trainNumber, element.volume)
+            index++;
+        })
+       
+        // console.log('tab1 runnimg')
+        let carousels = document.querySelector('.image-carousel');
+        let bubbles = document.querySelector('.bubbles');
+        // let next = document.querySelector('.next');
+        // let prev = document.querySelector('.prev')
+        // console.log(next.attributes)
+        // let listener = next.getAttribute('listener') === 'true'
+        // console.log(next)
+        // console.log(sliderFn.nextFn)
+        console.log(typeof(prevFn))
+        prevFn()
+        nextFn()
+        if(!bubbles) {
+            carousels.insertAdjacentHTML('afterend', `
+            <div class="bubbles"></div>
+            `)
+            // console.log('event listners placing')
+            sliderFn()
+        }
+    }   
+    else if(e.currentTarget.id === 'tab2')
+    {
+        //fetch tab 2 data here
+        inner.innerHTML = "";
+        var bubbles = document.querySelector('.bubbles')
+        if(bubbles) bubbles.remove()
+        // tab1.forEach((element, index)=> {
+            // console.log(index+1 + "times")
+            // htmlMakeUp(index, element.name, element.time, element.trainNumber, element.volume)
+            // index++;
+            inner.style.left="0"
+            inner.insertAdjacentHTML('afterbegin', `
+            <div class="train departure ">
+                <div class="train1 trainGrid">
+                    <div class="info">
+                        <div class="infoLeftBar"></div>
+                        <div class="infoContent"><h2>Aret Suppelementary</h2></div>
+                    </div>
+                    <div class="time flex"><h1>15:16</h1></div>
+                    <div class="name tabContent">
+                        <b>Saint-Quentin</b>
+                        <p>TER | 747474</p>
+                    </div>
+                    <div class="volume flex">
+                        <b>voie</b>
+                        <h1>15</h1>
+                    </div>
+                </div>
+            </div>
+            `)
+        }
+        else if(e.currentTarget.id === 'tab3')
+        {
+        //fetch tab 3 work here
+        inner.style.left="0"
+        inner.innerHTML = "";
+        var bubbles = document.querySelector('.bubbles')
+        if(bubbles) bubbles.remove()
+        inner.insertAdjacentHTML('afterbegin', `
+        <div class="train departure ">
+            <div class="train1 trainGrid">
+                <div class="info">
+                    <div class="infoLeftBar"></div>
+                    <div class="infoContent"><h2>Aret Suppelementary</h2></div>
+                </div>
+                <div class="time flex"><h1>15:16</h1></div>
+                <div class="name tabContent">
+                    <b>Saint-Quentin</b>
+                    <p>TER | 747474</p></div>
+                <div class="volume flex">
+                    <b>voie</b>
+                    <h1>15</h1>
+                </div>
+            </div>
+        </div>
+        `)
+    }
+        
+}
+
+
+
+var sliderFn = () => {
+[].forEach.call(carousels, function (c) {
+        let next = c.querySelector('.next'),
+        prev = c.querySelector('.prev'),
+        bubblesContainer = document.querySelector('.bubbles'),
+        inner = c.querySelector('.inner'),
+        imgs = inner.querySelectorAll('.train'),
+        // imgs = inner.getElementsByTagName('img'),
+        currentImageIndex = 0,
+        width = 90,
+        bubbles = [];
+        
+        for (let i = 0; i < imgs.length; i++) {
+            let b = document.createElement('span');
+            b.classList.add('bubble');
+            bubblesContainer.appendChild(b);
+            bubbles.push(b);
+            
+            b.addEventListener('click', function () {
+                currentImageIndex = i;
+                switchImg();
+            });
+        }
+        
+        function switchImg () {
+            // console.log(-width * currentImageIndex + 'vw')
+            inner.style.left = -width * currentImageIndex + 'vw';
+            
+            bubbles.forEach(function (b, i) {
+                if (i === currentImageIndex) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+            });
+        }
+        
+
+        
+        prevFn = () => {
+            prev.addEventListener('click', function () {
+                console.log('prev')
+                currentImageIndex--;
+                
+                if (currentImageIndex < 0) {
+                    currentImageIndex = imgs.length - 1;
+                }
+                
+                switchImg();
+            });
+        }
+        prevFn();
+        
+        nextFn = () => {
+            next.addEventListener('click', function () {
+
+                console.log('next')
+                currentImageIndex++;
+                
+                if (currentImageIndex >= imgs.length) {
+                    currentImageIndex = 0;
+                }
+
+                switchImg();
+            });
+        }
+        nextFn();
+
+        
+        switchImg();
+    });
+}
+
+tab.forEach(element => {
+    element.addEventListener('click', (e) => {toggleTab(e); })
+}); 
+
+window.onload = () => {
+    console.log('on load')
+    sliderFn()
+}
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./dist/style.css":
 /*!**************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./dist/style.css ***!
@@ -18,7 +311,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n  padding: 0;\r\n  margin: 0;\r\n  border: 0;\r\n  box-sizing: border-box;\r\n}\r\nhtml{\r\n    font-size: 62.5%;\r\n}\r\n:root {\r\n    --font-family: 'Roboto', sans-serif;\r\n    --bold: 700;\r\n    --regular:300;\r\n    --blue-bg:#26638f;\r\n    --green-bg:#199919;\r\n    --purple-bg:#99154e\r\n}\r\nbody{\r\n  font-family: var(--font-family);\r\n}\r\n.flex {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  flex-flow: column;\r\n}\r\n.topDetails{\r\n    display: grid;\r\n    grid-template-columns: minmax(10px, 10em) 1fr minmax(10px, 10em);\r\n    grid-template-areas: \". topContent .\";\r\n}\r\n.content {\r\n    grid-area: topContent;\r\n    /* background-color: lightgrey; */\r\n}\r\n/* H E A D E R   ----------------------*/\r\n.header{\r\n    row-gap: 5px;\r\n    font-family: var(--font-family);\r\n    margin: 1em;\r\n    text-align: center;\r\n}\r\n.header h3{\r\n    font-size: 2em;\r\n    font-weight: var(--bold);\r\n}\r\n.header p{\r\n    font-size: 1.5em;\r\n    font-weight: var(--regular);\r\n}\r\n\r\n/* T A B   -   P A N E L   ---------------*/\r\n.tabPanel{\r\n    display: grid;\r\n    place-content: center;\r\n    grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );\r\n    gap: 1em;\r\n    margin: 2em 0;\r\n    \r\n}\r\n.tab{\r\n    height: 5em;\r\n    border-radius: 5px;\r\n    padding: 5px;\r\n    display: grid;\r\n    grid-template-columns: min-content 1fr;\r\n    gap: 1em;\r\n    place-content: center;\r\n    background: lightgrey;\r\n    cursor: pointer;\r\n}\r\n.icon{\r\n    /* background-color: yellow; */\r\n    font-size: xx-large;\r\n    color: #9f0000;\r\n}\r\n.tabContent{\r\n    /* background-color: violet; */\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: flex-start;\r\n    flex-direction: column;\r\n    font-size: small;\r\n    font-weight: var(--bold);\r\n}\r\n.tabContent p {\r\n  color: gray;\r\n}\r\n.tabContent b {\r\n  font-size: medium;\r\n}\r\n\r\n.lastUpdate{\r\n  font-weight: var(--regular);\r\n  font-size: medium;\r\n  margin: 1em;\r\n}\r\n\r\n.image-carousel {\r\n  width: 90vw;\r\n  height: 350px;\r\n  overflow: hidden;\r\n  position: relative;\r\n  margin: auto;\r\n  /* background: #3d84b8; */\r\n}\r\n\r\n.inner {\r\n  display: flex;\r\n  position: absolute;\r\n  left: 0;\r\n  transition: left 0.25s ease-out;\r\n}\r\n.train{\r\n  width: 90vw;\r\n  padding: 0 7em;\r\n  height: 320px;\r\n  overflow-y: scroll;\r\n  display: grid;\r\n  grid-template-rows: repeat(auto-fit, 1fr);\r\n}\r\n.trainImp {\r\n  /* background: #1b4969f8!important; */\r\n}\r\n.arrival{\r\n  background: var(--green-bg);\r\n}\r\n.departure{\r\n  background: var(--blue-bg);\r\n}\r\n.trainGrid{\r\n  display: grid;\r\n  grid-template-columns: 2fr 3fr 3fr 1fr;\r\n  grid-template-areas: \"info time name volume\";\r\n  height: 8em;\r\n  color: white;\r\n}\r\n.info {\r\n  grid-area: info;\r\n  display: grid;\r\n  grid-template-columns: 20px 1fr;\r\n  margin: 2em;\r\n}\r\n.infoLeftBar{\r\n  height: 100%;\r\n  width: 6px;\r\n  border-radius: 50px;\r\n  background: #8afa8a;\r\n}\r\n.time {\r\n  grid-area: time;\r\n  font-size: large;\r\n  color: yellow;\r\n}\r\n\r\n.name > *, .name p  {\r\n  color: white;\r\n}\r\n.volume{\r\n  /* background: rgba(0, 0, 0, 0.1); */\r\n  background: white;\r\n  color: black;\r\n  margin: 1.5em;\r\n  border-radius: 5px;\r\n}\r\n\r\n.bubbles {\r\n  display: flex;\r\n  justify-content: center;\r\n  position: relative;\r\n  top: 100%;\r\n  /* bottom: 0; */\r\n  left: 0;\r\n  right: 0;\r\n  margin-bottom: 5px;\r\n  /* border: 2px solid yellow; */\r\n}\r\n\r\n.bubble {\r\n  margin: 2.5px;\r\n  background-color: black;\r\n  border-radius: 50%;\r\n  width: 10px;\r\n  height: 10px;\r\n  display: inline-block;\r\n  opacity: 0.25;\r\n  transition: opacity 0.1s linear;\r\n  cursor: pointer;\r\n}\r\n\r\n.bubble:hover {\r\n  opacity: 0.65;\r\n}\r\n\r\n.bubble.active {\r\n  opacity: 1;\r\n  background-color: var(--purple-bg);\r\n\r\n}\r\n\r\n.next::after,\r\n.prev::after {\r\n  content: \"\";\r\n  position: absolute;\r\n  top: 50%;\r\n  right: 0;\r\n  /* background-color: white; */\r\n  font-size: 20px;\r\n  transform: rotate(90deg);\r\n  width: max-content;\r\n  height: max-content;\r\n  font-weight: bold;\r\n  font-family: sans-serif;\r\n  box-sizing: border-box;\r\n  cursor: pointer;\r\n  opacity: 1;\r\n}\r\n\r\n.prev::after {\r\n  display: flex;\r\n    content: \"Departure\";\r\n    left: -5.5%;\r\n    top: 39%;\r\n    background: var(--blue-bg);\r\n    height: 3.5em;\r\n    width: 13%;\r\n    justify-content: center;\r\n    align-items: center;\r\n    color: white;\r\n    /* border: 1px solid black; */\r\n}\r\n.next::after{\r\n  display: flex;\r\n  content: \"Arrival \";\r\n  top: 39%;\r\n  right: -4.5%;\r\n  background: var(--green-bg);\r\n  height: 3em;\r\n  width: 13%;\r\n  justify-content: center;\r\n  align-items: center;\r\n  color: white;\r\n  /* border: 1px solid black; */\r\n}\r\n\r\n.seeAllBtn{\r\n  padding: 1em;\r\n  background: var(--purple-bg);\r\n  height: max-content;\r\n  width: max-content;\r\n  color: white;\r\n  cursor: pointer;\r\n}\r\n\r\n@media only screen and (max-width:880px) {\r\n  .volume{\r\n    margin: 1.5em 0em;\r\n    padding: 0 5px;\r\n  }\r\n  .train{\r\n    padding: 3em 7em;\r\n  }\r\n  \r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n  padding: 0;\r\n  margin: 0;\r\n  border: 0;\r\n  box-sizing: border-box;\r\n}\r\nhtml{\r\n    font-size: 62.5%;\r\n}\r\n:root {\r\n    --font-family: 'Roboto', sans-serif;\r\n    --bold: 700;\r\n    --regular:300;\r\n    --blue-bg:#26638f;\r\n    --green-bg:#199919;\r\n    --purple-bg:#99154e\r\n}\r\nbody{\r\n  font-family: var(--font-family);\r\n}\r\n.flex {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  flex-flow: column;\r\n}\r\n.topDetails{\r\n    display: grid;\r\n    grid-template-columns: minmax(10px, 10em) 1fr minmax(10px, 10em);\r\n    grid-template-areas: \". topContent .\";\r\n}\r\n.content {\r\n    grid-area: topContent;\r\n    /* background-color: lightgrey; */\r\n}\r\n/* H E A D E R   ----------------------*/\r\n.header{\r\n    row-gap: 5px;\r\n    font-family: var(--font-family);\r\n    margin: 1em;\r\n    text-align: center;\r\n}\r\n.header h3{\r\n    font-size: 2em;\r\n    font-weight: var(--bold);\r\n}\r\n.header p{\r\n    font-size: 1.5em;\r\n    font-weight: var(--regular);\r\n}\r\n\r\n/* T A B   -   P A N E L   ---------------*/\r\n.tabPanel{\r\n    display: grid;\r\n    place-content: center;\r\n    grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );\r\n    gap: 1em;\r\n    margin: 2em 0;\r\n    \r\n}\r\n.tab{\r\n    height: 5em;\r\n    border-radius: 5px;\r\n    padding: 5px;\r\n    display: grid;\r\n    grid-template-columns: min-content 1fr;\r\n    gap: 1em;\r\n    place-content: center;\r\n    background: lightgrey;\r\n    cursor: pointer;\r\n    transition: background 200ms ease-in-out;\r\n}\r\n.tab:hover {\r\n  background: #494949;\r\n}\r\n.tab:hover .tabContent p {\r\n  color: darkgray;\r\n}\r\n.tab:hover > * {\r\n  color: white;\r\n}\r\n.icon{\r\n    /* background-color: yellow; */\r\n    font-size: x-large;\r\n    color: #9f0000;\r\n}\r\n.tabContent{\r\n    /* background-color: violet; */\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: flex-start;\r\n    flex-direction: column;\r\n    font-size: small;\r\n    font-weight: var(--bold);\r\n}\r\n.tabContent p {\r\n  color: gray;\r\n}\r\n.tabContent b {\r\n  font-size: medium;\r\n}\r\n\r\n.lastUpdate{\r\n  font-weight: var(--regular);\r\n  font-size: medium;\r\n  margin: 1em;\r\n}\r\n\r\n.image-carousel {\r\n  width: 90vw;\r\n  height: 350px;\r\n  overflow: hidden;\r\n  position: relative;\r\n  margin: auto;\r\n  /* background: #3d84b8; */\r\n}\r\n\r\n.inner {\r\n  display: flex;\r\n  position: absolute;\r\n  left: 0;\r\n  transition: left 0.25s ease-out;\r\n}\r\n.train{\r\n  width: 90vw;\r\n  padding: 0 7em;\r\n  height: 320px;\r\n  overflow-y: scroll;\r\n  display: grid;\r\n  grid-template-rows: repeat(auto-fit, 1fr);\r\n}\r\n.trainImp {\r\n  /* background: #1b4969f8!important; */\r\n}\r\n.arrival{\r\n  background: var(--green-bg);\r\n}\r\n.departure{\r\n  background: var(--blue-bg);\r\n}\r\n.trainGrid{\r\n  display: grid;\r\n  grid-template-columns: 2fr 3fr 3fr 1fr;\r\n  grid-template-areas: \"info time name volume\";\r\n  height: 8em;\r\n  color: white;\r\n}\r\n.info {\r\n  grid-area: info;\r\n  display: grid;\r\n  grid-template-columns: 20px 1fr;\r\n  margin: 2em;\r\n}\r\n.infoLeftBar{\r\n  height: 100%;\r\n  width: 6px;\r\n  border-radius: 50px;\r\n  background: #8afa8a;\r\n}\r\n.time {\r\n  grid-area: time;\r\n  font-size: large;\r\n  color: yellow;\r\n}\r\n\r\n.name > *, .name p  {\r\n  color: white;\r\n}\r\n.volume{\r\n  /* background: rgba(0, 0, 0, 0.1); */\r\n  background: white;\r\n  color: black;\r\n  margin: 1.5em;\r\n  border-radius: 5px;\r\n}\r\n\r\n.bubbles {\r\n  display: flex;\r\n  justify-content: center;\r\n  position: relative;\r\n  top: 100%;\r\n  /* bottom: 0; */\r\n  left: 0;\r\n  right: 0;\r\n  margin-bottom: 5px;\r\n  /* border: 2px solid yellow; */\r\n}\r\n\r\n.bubble {\r\n  margin: 2.5px;\r\n  background-color: black;\r\n  border-radius: 50%;\r\n  width: 10px;\r\n  height: 10px;\r\n  display: inline-block;\r\n  opacity: 0.25;\r\n  transition: opacity 0.1s linear;\r\n  cursor: pointer;\r\n}\r\n\r\n.bubble:hover {\r\n  opacity: 0.65;\r\n}\r\n\r\n.bubble.active {\r\n  opacity: 1;\r\n  background-color: var(--purple-bg);\r\n\r\n}\r\n\r\n.next::after,\r\n.prev::after {\r\n  content: \"\";\r\n  position: absolute;\r\n  top: 50%;\r\n  right: 0;\r\n  /* background-color: white; */\r\n  font-size: 20px;\r\n  transform: rotate(90deg);\r\n  width: max-content;\r\n  height: max-content;\r\n  font-weight: bold;\r\n  font-family: sans-serif;\r\n  box-sizing: border-box;\r\n  cursor: pointer;\r\n  opacity: 1;\r\n}\r\n\r\n.prev::after {\r\n    display: flex;\r\n    content: \"Departure\";\r\n    left: -5.5%;\r\n    top: 39%;\r\n    background: var(--blue-bg);\r\n    height: 3.5em;\r\n    width: 13%;\r\n    justify-content: center;\r\n    align-items: center;\r\n    color: white;\r\n    /* border: 1px solid black; */\r\n}\r\n.next::after{\r\n  display: flex;\r\n  content: \"Arrival \";\r\n  top: 39%;\r\n  right: -4.5%;\r\n  background: var(--green-bg);\r\n  height: 3.5em;\r\n  width: 13%;\r\n  justify-content: center;\r\n  align-items: center;\r\n  color: white;\r\n  /* border: 1px solid black; */\r\n}\r\n\r\n.seeAllBtn{\r\n  padding: 1em;\r\n  background: var(--purple-bg);\r\n  height: max-content;\r\n  width: max-content;\r\n  color: white;\r\n  cursor: pointer;\r\n}\r\n\r\n@media only screen and (max-width:880px) {\r\n  .volume{\r\n    margin: 1.5em 0em;\r\n    padding: 0 5px;\r\n  }\r\n  .train{\r\n    padding: 5em;\r\n  }\r\n  \r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -17725,10 +18018,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _dist_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../dist/style.css */ "./dist/style.css");
+/* harmony import */ var _dist_image_carousel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../dist/image-carousel */ "./dist/image-carousel.js");
+/* harmony import */ var _dist_image_carousel__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_dist_image_carousel__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
-console.log('object')
+
 function component() {
     const element = document.createElement("div");
     

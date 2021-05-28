@@ -1,7 +1,7 @@
 import _ from "lodash";
-import "./../dist/style.css"
+import "./../dist/style.css";
+import "./../dist/image-carousel"
 
-console.log('object')
 function component() {
     const element = document.createElement("div");
     

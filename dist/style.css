@@ -68,10 +68,20 @@ body{
     place-content: center;
     background: lightgrey;
     cursor: pointer;
+    transition: background 200ms ease-in-out;
+}
+.tab:hover {
+  background: #494949;
+}
+.tab:hover .tabContent p {
+  color: darkgray;
+}
+.tab:hover > * {
+  color: white;
 }
 .icon{
     /* background-color: yellow; */
-    font-size: xx-large;
+    font-size: x-large;
     color: #9f0000;
 }
 .tabContent{
@@ -217,7 +227,7 @@ body{
 }
 
 .prev::after {
-  display: flex;
+    display: flex;
     content: "Departure";
     left: -5.5%;
     top: 39%;
@@ -235,7 +245,7 @@ body{
   top: 39%;
   right: -4.5%;
   background: var(--green-bg);
-  height: 3em;
+  height: 3.5em;
   width: 13%;
   justify-content: center;
   align-items: center;
@@ -258,7 +268,7 @@ body{
     padding: 0 5px;
   }
   .train{
-    padding: 3em 7em;
+    padding: 5em;
   }
   
 }
