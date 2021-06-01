@@ -24,7 +24,7 @@ var toggleActiveTab  = (tabIndex, tab) => {
         node.style.backgroundColor="";
         node.style.color="";
     });
-    console.log(tabs[tabIndex].innerHTML)
+    // tabs[tabIndex].childNodes[1].childNodes[0].style.color= "white"
     tabs[tabIndex].style.backgroundColor="#494949";
     tabs[tabIndex].style.color="white";
     tabContent.forEach(function(node){
