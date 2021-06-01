@@ -1,8 +1,8 @@
 let carousels = document.getElementsByClassName('image-carousel');
 let tab = document.querySelectorAll(".tab");
 var inner = document.querySelector(".inner")
-var arrival = document.querySelector(".arrival")
-var departure = document.querySelector(".departure")
+// var arrival = document.querySelector(".arrival")
+// var departure = document.querySelector(".departure")
 var nextFn = new Function();
 var prevFn  = new Function();
 
@@ -25,99 +25,206 @@ var toggleActiveTab  = (tabIndex, tab) => {
 
 }
 
-var htmlMakeUp = (index, name, time, trainNumber, volume) => {
-    if(index < 1){
-        inner.innerHTML=""
-    inner.insertAdjacentHTML('afterbegin', `
-        <div>
-            <div class="train arrival">
-                <div class="train1 trainGrid">
+var htmlMakeUp = (index, name, time, trainNumber, volume, tabName) => {
+    console.log(tabName)
+    switch (tabName) {
+        case 'tab1':
+            if(index < 1){
+                inner.innerHTML=""
+            inner.insertAdjacentHTML('afterbegin', `
+                <div>
+                    <div class="train arrival">
+                        <div class="train${index+1} trainGrid">
+                            <div class="info">
+                                <div class="infoLeftBar"></div>
+                                <div class="infoContent"><h2>${name}</h2></div>
+                            </div>
+                            <div class="time flex"><h1>${time}</h1></div>
+                            <div class="name tabContent">
+                                <b>Saint-Quentin</b>
+                                <p>TER | ${trainNumber}</p></div>
+                            <div class="volume flex">
+                                <b>voie</b>
+                                <h1>${volume}</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prev prevArrival" ></div>
+                </div>
+        
+                <div>
+                    <div class="train departure">
+                        <div class="train${index+1} trainGrid">
+                            <div class="info">
+                                <div class="infoLeftBar"></div>
+                                <div class="infoContent"><h2>${name}</h2></div>
+                            </div>
+                            <div class="time flex"><h1>${time}</h1></div>
+                            <div class="name tabContent">
+                                <b>Saint-Quentin</b>
+                                <p>TER | ${trainNumber}</p></div>
+                            <div class="volume flex">
+                                <b>voie</b>
+                                <h1>${volume}</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="next nextDeparture" ></div>
+                </div>
+            `)
+            }   
+            else {
+            var arrival = document.querySelector(".arrival")
+            arrival.insertAdjacentHTML('beforeend', `
+                <div class="train${index+1} trainGrid">
                     <div class="info">
                         <div class="infoLeftBar"></div>
-                        <div class="infoContent"><h2>Aret Suppelementary</h2></div>
+                        <div class="infoContent"><h2>${name}</h2></div>
                     </div>
-                    <div class="time flex"><h1>15:16</h1></div>
+                    <div class="time flex"><h1>${time}</h1></div>
                     <div class="name tabContent">
                         <b>Saint-Quentin</b>
-                        <p>TER | 747474</p></div>
+                        <p>TER | ${trainNumber}</p></div>
                     <div class="volume flex">
                         <b>voie</b>
-                        <h1>15</h1>
+                        <h1>${volume}</h1>
                     </div>
                 </div>
-            </div>
-            <div class="prev prevArrival" ></div>
-        </div>
-
-        <div>
-            <div class="train departure">
-                <div class="train1 trainGrid">
+            `)
+            var departure = document.querySelector(".departure")
+            departure.insertAdjacentHTML('beforeend', `
+                <div class="train${index+1} trainGrid">
                     <div class="info">
                         <div class="infoLeftBar"></div>
-                        <div class="infoContent"><h2>Aret Suppelementary</h2></div>
+                        <div class="infoContent"><h2>${name}</h2></div>
                     </div>
-                    <div class="time flex"><h1>15:16</h1></div>
+                    <div class="time flex"><h1>${time}</h1></div>
                     <div class="name tabContent">
                         <b>Saint-Quentin</b>
-                        <p>TER | 747474</p></div>
+                        <p>TER | ${trainNumber}</p></div>
                     <div class="volume flex">
                         <b>voie</b>
-                        <h1>15</h1>
+                        <h1>${volume}</h1>
                     </div>
                 </div>
-            </div>
-            <div class="next nextDeparture" ></div>
-        </div>
-    `)
-    }   
-    else {
-    var arrival = document.querySelector(".arrival")
-    arrival.insertAdjacentHTML('beforeend', `
-        <div class="train1 trainGrid">
-            <div class="info">
-                <div class="infoLeftBar"></div>
-                <div class="infoContent"><h2>Aret Suppelementary</h2></div>
-            </div>
-            <div class="time flex"><h1>15:16</h1></div>
-            <div class="name tabContent">
-                <b>Saint-Quentin</b>
-                <p>TER | 747474</p></div>
-            <div class="volume flex">
-                <b>voie</b>
-                <h1>15</h1>
-            </div>
-        </div>
-    `)
-    var departure = document.querySelector(".departure")
-    departure.insertAdjacentHTML('beforeend', `
-        <div class="train1 trainGrid">
-            <div class="info">
-                <div class="infoLeftBar"></div>
-                <div class="infoContent"><h2>Aret Suppelementary</h2></div>
-            </div>
-            <div class="time flex"><h1>15:16</h1></div>
-            <div class="name tabContent">
-                <b>Saint-Quentin</b>
-                <p>TER | 747474</p></div>
-            <div class="volume flex">
-                <b>voie</b>
-                <h1>15</h1>
-            </div>
-        </div>
-    `)
-}
-
-
-
-
+            `)
+            }    
+            break;
+        case 'tab2':
+            if (index < 1) {
+                inner.insertAdjacentHTML('afterbegin', `
+                <div class="train departure ">
+                    <div class="train${index+1} trainGrid">
+                        <div class="info">
+                            <div class="infoLeftBar"></div>
+                            <div class="infoContent"><h2>${name}</h2></div>
+                        </div>
+                        <div class="time flex"><h1>${time}</h1></div>
+                        <div class="name tabContent">
+                            <b>Saint-Quentin</b>
+                            <p>TER | ${trainNumber}</p>
+                        </div>
+                        <div class="volume flex">
+                            <b>voie</b>
+                            <h1>${volume}</h1>
+                        </div>
+                    </div>
+                </div>
+                `)
+            }
+            else {
+                var departure = document.querySelector(".departure")
+                departure.insertAdjacentHTML("beforeend", `
+                    <div class="train${index+1} trainGrid">
+                        <div class="info">
+                            <div class="infoLeftBar"></div>
+                            <div class="infoContent"><h2>${name}</h2></div>
+                        </div>
+                        <div class="time flex"><h1>${time}</h1></div>
+                        <div class="name tabContent">
+                            <b>Saint-Quentin</b>
+                            <p>TER | ${trainNumber}</p>
+                        </div>
+                        <div class="volume flex">
+                            <b>voie</b>
+                            <h1>${volume}</h1>
+                        </div>
+                    </div>
+                `)
+            //     document.querySelector('.departure').insertAdjacentHTML("beforeend", `
+            //     <div class="train1 trainGrid">
+            //     <div class="info">
+            //         <div class="infoLeftBar"></div>
+            //         <div class="infoContent"><h2>Aret Suppelementary</h2></div>
+            //     </div>
+            //     <div class="time flex"><h1>15:16</h1></div>
+            //     <div class="name tabContent">
+            //         <b>Saint-Quentin</b>
+            //         <p>TER | 747474</p>
+            //     </div>
+            //     <div class="volume flex">
+            //         <b>voie</b>
+            //         <h1>15</h1>
+            //     </div>
+            // </div>
+            //     `)
+            }
+            break;
+        
+        case "tab3":
+            if (index < 1) {
+                inner.insertAdjacentHTML('afterbegin', `
+                <div class="train departure ">
+                    <div class="train${index+1} trainGrid">
+                        <div class="info">
+                            <div class="infoLeftBar"></div>
+                            <div class="infoContent"><h2>${name}</h2></div>
+                        </div>
+                        <div class="time flex"><h1>${time}</h1></div>
+                        <div class="name tabContent">
+                            <b>Saint-Quentin</b>
+                            <p>TER | ${trainNumber}</p>
+                        </div>
+                        <div class="volume flex">
+                            <b>voie</b>
+                            <h1>${volume}</h1>
+                        </div>
+                    </div>
+                </div>
+                `)
+            }
+            else {
+                var departure = document.querySelector(".departure")
+                departure.insertAdjacentHTML("beforeend", `
+                    <div class="train${index+1} trainGrid">
+                        <div class="info">
+                            <div class="infoLeftBar"></div>
+                            <div class="infoContent"><h2>${name}</h2></div>
+                        </div>
+                        <div class="time flex"><h1>${time}</h1></div>
+                        <div class="name tabContent">
+                            <b>Saint-Quentin</b>
+                            <p>TER | ${trainNumber}</p>
+                        </div>
+                        <div class="volume flex">
+                            <b>voie</b>
+                            <h1>${volume}</h1>
+                        </div>
+                    </div>
+                `)
+            }
+            break;
+        default:
+            break;
+    }
 
 }
 
 var toggleTab = (e) => {
-    var tab1 = [];
+    var tabData = [];
 
         for (let i = 0; i < 4; i++) {
-            tab1.push(
+            tabData.push(
                 tr1 = {
                     name:`i'm one ${i+1}`,
                     time: `${Math.ceil(Math.random()*12)}:${Math.ceil(Math.random()*61)}`,
@@ -131,8 +238,8 @@ var toggleTab = (e) => {
         toggleActiveTab(0, e.currentTarget)
         //fetch tab 1 data here
         inner.innerHTML = "";
-        tab1.forEach((element, index)=> {
-            htmlMakeUp(index, element.name, element.time, element.trainNumber, element.volume)
+        tabData.forEach((element, index, )=> {
+            htmlMakeUp(index, element.name, element.time, element.trainNumber, element.volume, tabName = "tab1")
             index++;
         })
        
@@ -149,62 +256,30 @@ var toggleTab = (e) => {
     else if(e.currentTarget.id === 'tab2')
     {
         toggleActiveTab(1, e.currentTarget)
-        // e.currentTarget.classList.add("activeTab")
-        //fetch tab 2 data here
         inner.innerHTML = "";
+        inner.style.left="0"
+        //fetch tab 2 data here
+        //and replace with tabData
+        tabData.forEach((element, index) => {
+            htmlMakeUp(index, element.name, element.time, element.trainNumber, element.volume, tabName = "tab2")
+            index++;
+        })
         var bubbles = document.querySelector('.bubbles')
         if(bubbles) bubbles.remove()
-        // tab1.forEach((element, index)=> {
-            // console.log(index+1 + "times")
-            // htmlMakeUp(index, element.name, element.time, element.trainNumber, element.volume)
-            // index++;
-            inner.style.left="0"
-            inner.insertAdjacentHTML('afterbegin', `
-            <div class="train departure ">
-                <div class="train1 trainGrid">
-                    <div class="info">
-                        <div class="infoLeftBar"></div>
-                        <div class="infoContent"><h2>Aret Suppelementary</h2></div>
-                    </div>
-                    <div class="time flex"><h1>15:16</h1></div>
-                    <div class="name tabContent">
-                        <b>Saint-Quentin</b>
-                        <p>TER | 747474</p>
-                    </div>
-                    <div class="volume flex">
-                        <b>voie</b>
-                        <h1>15</h1>
-                    </div>
-                </div>
-            </div>
-            `)
     }
     else if(e.currentTarget.id === 'tab3')
         {
         toggleActiveTab(2, e.currentTarget)
-        //fetch tab 3 work here
         inner.style.left="0"
         inner.innerHTML = "";
+        //fetch tab 3 work here
+        //and replace with tabData
+        tabData.forEach((element, index) => {
+            htmlMakeUp(index, element.name, element.time, element.trainNumber, element.volume, tabName = "tab3")
+            index++;
+        })
         var bubbles = document.querySelector('.bubbles')
         if(bubbles) bubbles.remove()
-        inner.insertAdjacentHTML('afterbegin', `
-        <div class="train departure ">
-            <div class="train1 trainGrid">
-                <div class="info">
-                    <div class="infoLeftBar"></div>
-                    <div class="infoContent"><h2>Aret Suppelementary</h2></div>
-                </div>
-                <div class="time flex"><h1>15:16</h1></div>
-                <div class="name tabContent">
-                    <b>Saint-Quentin</b>
-                    <p>TER | 747474</p></div>
-                <div class="volume flex">
-                    <b>voie</b>
-                    <h1>15</h1>
-                </div>
-            </div>
-        </div>
-        `)
     }
         
 }
