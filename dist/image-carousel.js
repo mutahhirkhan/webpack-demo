@@ -3,8 +3,27 @@ let tab = document.querySelectorAll(".tab");
 var inner = document.querySelector(".inner")
 var arrival = document.querySelector(".arrival")
 var departure = document.querySelector(".departure")
-var nextFn = null;
-var prevFn  = null;
+var nextFn = new Function();
+var prevFn  = new Function();
+
+var toggleActiveTab  = (tabIndex, tab) => {
+    var tabs = document.querySelectorAll('.tab')
+    var tabContent = document.querySelectorAll(".tabContent p")
+
+    // console.log(tabs, tabContent)
+    tabs.forEach(function(node){
+        node.style.backgroundColor="";
+        node.style.color="";
+    });
+    // tabs[tabIndex].childNodes[1].childNodes[0].style.color= "white"
+    tabs[tabIndex].style.backgroundColor="#494949";
+    tabs[tabIndex].style.color="white";
+    tabContent.forEach(function(node){
+        node.style.color="";
+    });
+    tabContent[tabIndex].style.color="darkgray";
+
+}
 
 var htmlMakeUp = (index, name, time, trainNumber, volume) => {
     if(index < 1){
@@ -27,7 +46,7 @@ var htmlMakeUp = (index, name, time, trainNumber, volume) => {
                     </div>
                 </div>
             </div>
-            <div class="prev prevArrival" listner="true"></div>
+            <div class="prev prevArrival" ></div>
         </div>
 
         <div>
@@ -47,7 +66,7 @@ var htmlMakeUp = (index, name, time, trainNumber, volume) => {
                     </div>
                 </div>
             </div>
-            <div class="next nextDeparture" listner="true"></div>
+            <div class="next nextDeparture" ></div>
         </div>
     `)
     }   
@@ -109,38 +128,28 @@ var toggleTab = (e) => {
         }
     if(e.currentTarget.id === 'tab1') 
     {
+        toggleActiveTab(0, e.currentTarget)
         //fetch tab 1 data here
-        
         inner.innerHTML = "";
-        // arrival.innerHTML = " "
         tab1.forEach((element, index)=> {
-            // console.log(index+1 + "times")
             htmlMakeUp(index, element.name, element.time, element.trainNumber, element.volume)
             index++;
         })
        
-        // console.log('tab1 runnimg')
         let carousels = document.querySelector('.image-carousel');
         let bubbles = document.querySelector('.bubbles');
-        // let next = document.querySelector('.next');
-        // let prev = document.querySelector('.prev')
-        // console.log(next.attributes)
-        // let listener = next.getAttribute('listener') === 'true'
-        // console.log(next)
-        // console.log(sliderFn.nextFn)
-        console.log(typeof(prevFn))
-        prevFn()
-        nextFn()
+        
         if(!bubbles) {
             carousels.insertAdjacentHTML('afterend', `
             <div class="bubbles"></div>
             `)
-            // console.log('event listners placing')
-            sliderFn()
         }
+        sliderFn()
     }   
     else if(e.currentTarget.id === 'tab2')
     {
+        toggleActiveTab(1, e.currentTarget)
+        // e.currentTarget.classList.add("activeTab")
         //fetch tab 2 data here
         inner.innerHTML = "";
         var bubbles = document.querySelector('.bubbles')
@@ -169,9 +178,10 @@ var toggleTab = (e) => {
                 </div>
             </div>
             `)
-        }
-        else if(e.currentTarget.id === 'tab3')
+    }
+    else if(e.currentTarget.id === 'tab3')
         {
+        toggleActiveTab(2, e.currentTarget)
         //fetch tab 3 work here
         inner.style.left="0"
         inner.innerHTML = "";
@@ -203,72 +213,63 @@ var toggleTab = (e) => {
 
 var sliderFn = () => {
 [].forEach.call(carousels, function (c) {
-        let next = c.querySelector('.next'),
-        prev = c.querySelector('.prev'),
+        let next = document.querySelector('.next'),
+        prev = document.querySelector('.prev'),
         bubblesContainer = document.querySelector('.bubbles'),
-        inner = c.querySelector('.inner'),
+        inner = document.querySelector('.inner'),
         imgs = inner.querySelectorAll('.train'),
         // imgs = inner.getElementsByTagName('img'),
         currentImageIndex = 0,
-        width = 90,
+        width = 90;
         bubbles = [];
-        
+        bubblesContainer.innerHTML = ""
         for (let i = 0; i < imgs.length; i++) {
             let b = document.createElement('span');
             b.classList.add('bubble');
             bubblesContainer.appendChild(b);
             bubbles.push(b);
-            
             b.addEventListener('click', function () {
                 currentImageIndex = i;
                 switchImg();
             });
         }
-        
+        switchImg();
+
         function switchImg () {
-            // console.log(-width * currentImageIndex + 'vw')
             inner.style.left = -width * currentImageIndex + 'vw';
-            
             bubbles.forEach(function (b, i) {
-                if (i === currentImageIndex) {
+                if (i === currentImageIndex) 
+                {
                     b.classList.add('active');
-                } else {
+                } 
+                else {
                     b.classList.remove('active');
                 }
             });
         }
         
+        prev.addEventListener('click', function () {
+            currentImageIndex--;
 
-        
-        prevFn = () => {
-            prev.addEventListener('click', function () {
-                console.log('prev')
-                currentImageIndex--;
-                
-                if (currentImageIndex < 0) {
-                    currentImageIndex = imgs.length - 1;
-                }
-                
-                switchImg();
-            });
-        }
-        prevFn();
-        
-        nextFn = () => {
-            next.addEventListener('click', function () {
+            if (currentImageIndex < 0) {
+                currentImageIndex = imgs.length - 1;
+            }
+            
+            switchImg();
 
-                console.log('next')
-                currentImageIndex++;
-                
-                if (currentImageIndex >= imgs.length) {
-                    currentImageIndex = 0;
-                }
+        });
 
-                switchImg();
-            });
-        }
-        nextFn();
+    
+        next.addEventListener('click', function () {
 
+            currentImageIndex++;
+            
+            if (currentImageIndex >= imgs.length) {
+                currentImageIndex = 0;
+            }
+
+            switchImg();
+        });
         
         switchImg();
     });
@@ -279,6 +280,5 @@ tab.forEach(element => {
 }); 
 
 window.onload = () => {
-    console.log('on load')
     sliderFn()
 }

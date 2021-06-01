@@ -79,6 +79,17 @@ body{
 .tab:hover > * {
   color: white;
 }
+
+.activeTab  {
+  background: #494949;
+}
+.activeTab > * {
+  color: white;
+}
+.activeTab .tabContent p {
+  color: darkgray;
+}
+
 .icon{
     /* background-color: yellow; */
     font-size: x-large;
@@ -268,7 +279,7 @@ body{
     padding: 0 5px;
   }
   .train{
-    padding: 5em;
+    padding: 3em 7em;
   }
   
 }
