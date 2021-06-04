@@ -1,6 +1,6 @@
 import _ from "lodash";
-import "./../dist/style.css";
-import "./../dist/image-carousel";
+import "./style.css";
+import "./image-carousel";
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
 import { faTrain } from "@fortawesome/free-solid-svg-icons/faTrain";
 import { faSubway } from "@fortawesome/free-solid-svg-icons/faSubway";

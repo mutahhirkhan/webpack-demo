@@ -1,374 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./dist/image-carousel.js":
-/*!********************************!*\
-  !*** ./dist/image-carousel.js ***!
-  \********************************/
-/***/ (() => {
-
-let carousels = document.getElementsByClassName('image-carousel');
-let tab = document.querySelectorAll(".tab");
-var inner = document.querySelector(".inner")
-// var arrival = document.querySelector(".arrival")
-// var departure = document.querySelector(".departure")
-var nextFn = new Function();
-var prevFn  = new Function();
-
-var toggleActiveTab  = (tabIndex, tab) => {
-    var tabs = document.querySelectorAll('.tab')
-    var tabContent = document.querySelectorAll(".tabContent p")
-
-    // console.log(tabs, tabContent)
-    tabs.forEach(function(node){
-        node.style.backgroundColor="";
-        node.style.color="";
-    });
-    // tabs[tabIndex].childNodes[1].childNodes[0].style.color= "white"
-    tabs[tabIndex].style.backgroundColor="#494949";
-    tabs[tabIndex].style.color="white";
-    tabContent.forEach(function(node){
-        node.style.color="";
-    });
-    tabContent[tabIndex].style.color="darkgray";
-
-}
-
-var htmlMakeUp = (index, name, time, trainNumber, volume, tabName) => {
-    console.log(tabName)
-    switch (tabName) {
-        case 'tab1':
-            if(index < 1){
-                inner.innerHTML=""
-            inner.insertAdjacentHTML('afterbegin', `
-                <div>
-                    <div class="train arrival">
-                        <div class="train${index+1} trainGrid">
-                            <div class="info">
-                                <div class="infoLeftBar"></div>
-                                <div class="infoContent"><h2>${name}</h2></div>
-                            </div>
-                            <div class="time flex"><h1>${time}</h1></div>
-                            <div class="name tabContent">
-                                <b>Saint-Quentin</b>
-                                <p>TER | ${trainNumber}</p></div>
-                            <div class="volume flex">
-                                <b>voie</b>
-                                <h1>${volume}</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="prev prevArrival" ></div>
-                </div>
-        
-                <div>
-                    <div class="train departure">
-                        <div class="train${index+1} trainGrid">
-                            <div class="info">
-                                <div class="infoLeftBar"></div>
-                                <div class="infoContent"><h2>${name}</h2></div>
-                            </div>
-                            <div class="time flex"><h1>${time}</h1></div>
-                            <div class="name tabContent">
-                                <b>Saint-Quentin</b>
-                                <p>TER | ${trainNumber}</p></div>
-                            <div class="volume flex">
-                                <b>voie</b>
-                                <h1>${volume}</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="next nextDeparture" ></div>
-                </div>
-            `)
-            }   
-            else {
-            var arrival = document.querySelector(".arrival")
-            arrival.insertAdjacentHTML('beforeend', `
-                <div class="train${index+1} trainGrid">
-                    <div class="info">
-                        <div class="infoLeftBar"></div>
-                        <div class="infoContent"><h2>${name}</h2></div>
-                    </div>
-                    <div class="time flex"><h1>${time}</h1></div>
-                    <div class="name tabContent">
-                        <b>Saint-Quentin</b>
-                        <p>TER | ${trainNumber}</p></div>
-                    <div class="volume flex">
-                        <b>voie</b>
-                        <h1>${volume}</h1>
-                    </div>
-                </div>
-            `)
-            var departure = document.querySelector(".departure")
-            departure.insertAdjacentHTML('beforeend', `
-                <div class="train${index+1} trainGrid">
-                    <div class="info">
-                        <div class="infoLeftBar"></div>
-                        <div class="infoContent"><h2>${name}</h2></div>
-                    </div>
-                    <div class="time flex"><h1>${time}</h1></div>
-                    <div class="name tabContent">
-                        <b>Saint-Quentin</b>
-                        <p>TER | ${trainNumber}</p></div>
-                    <div class="volume flex">
-                        <b>voie</b>
-                        <h1>${volume}</h1>
-                    </div>
-                </div>
-            `)
-            }    
-            break;
-        case 'tab2':
-            if (index < 1) {
-                inner.insertAdjacentHTML('afterbegin', `
-                <div class="train departure ">
-                    <div class="train${index+1} trainGrid">
-                        <div class="info">
-                            <div class="infoLeftBar"></div>
-                            <div class="infoContent"><h2>${name}</h2></div>
-                        </div>
-                        <div class="time flex"><h1>${time}</h1></div>
-                        <div class="name tabContent">
-                            <b>Saint-Quentin</b>
-                            <p>TER | ${trainNumber}</p>
-                        </div>
-                        <div class="volume flex">
-                            <b>voie</b>
-                            <h1>${volume}</h1>
-                        </div>
-                    </div>
-                </div>
-                `)
-            }
-            else {
-                var departure = document.querySelector(".departure")
-                departure.insertAdjacentHTML("beforeend", `
-                    <div class="train${index+1} trainGrid">
-                        <div class="info">
-                            <div class="infoLeftBar"></div>
-                            <div class="infoContent"><h2>${name}</h2></div>
-                        </div>
-                        <div class="time flex"><h1>${time}</h1></div>
-                        <div class="name tabContent">
-                            <b>Saint-Quentin</b>
-                            <p>TER | ${trainNumber}</p>
-                        </div>
-                        <div class="volume flex">
-                            <b>voie</b>
-                            <h1>${volume}</h1>
-                        </div>
-                    </div>
-                `)
-            //     document.querySelector('.departure').insertAdjacentHTML("beforeend", `
-            //     <div class="train1 trainGrid">
-            //     <div class="info">
-            //         <div class="infoLeftBar"></div>
-            //         <div class="infoContent"><h2>Aret Suppelementary</h2></div>
-            //     </div>
-            //     <div class="time flex"><h1>15:16</h1></div>
-            //     <div class="name tabContent">
-            //         <b>Saint-Quentin</b>
-            //         <p>TER | 747474</p>
-            //     </div>
-            //     <div class="volume flex">
-            //         <b>voie</b>
-            //         <h1>15</h1>
-            //     </div>
-            // </div>
-            //     `)
-            }
-            break;
-        
-        case "tab3":
-            if (index < 1) {
-                inner.insertAdjacentHTML('afterbegin', `
-                <div class="train departure ">
-                    <div class="train${index+1} trainGrid">
-                        <div class="info">
-                            <div class="infoLeftBar"></div>
-                            <div class="infoContent"><h2>${name}</h2></div>
-                        </div>
-                        <div class="time flex"><h1>${time}</h1></div>
-                        <div class="name tabContent">
-                            <b>Saint-Quentin</b>
-                            <p>TER | ${trainNumber}</p>
-                        </div>
-                        <div class="volume flex">
-                            <b>voie</b>
-                            <h1>${volume}</h1>
-                        </div>
-                    </div>
-                </div>
-                `)
-            }
-            else {
-                var departure = document.querySelector(".departure")
-                departure.insertAdjacentHTML("beforeend", `
-                    <div class="train${index+1} trainGrid">
-                        <div class="info">
-                            <div class="infoLeftBar"></div>
-                            <div class="infoContent"><h2>${name}</h2></div>
-                        </div>
-                        <div class="time flex"><h1>${time}</h1></div>
-                        <div class="name tabContent">
-                            <b>Saint-Quentin</b>
-                            <p>TER | ${trainNumber}</p>
-                        </div>
-                        <div class="volume flex">
-                            <b>voie</b>
-                            <h1>${volume}</h1>
-                        </div>
-                    </div>
-                `)
-            }
-            break;
-        default:
-            break;
-    }
-
-}
-
-var toggleTab = (e) => {
-    var tabData = [];
-
-        for (let i = 0; i < 4; i++) {
-            tabData.push(
-                tr1 = {
-                    name:`i'm one ${i+1}`,
-                    time: `${Math.ceil(Math.random()*12)}:${Math.ceil(Math.random()*61)}`,
-                    trainNumber: Math.ceil(Math.random()*1000),
-                    volume: Math.ceil(Math.random()*60),
-                },
-            )            
-        }
-    if(e.currentTarget.id === 'tab1') 
-    {
-        toggleActiveTab(0, e.currentTarget)
-        //fetch tab 1 data here
-        inner.innerHTML = "";
-        tabData.forEach((element, index, )=> {
-            htmlMakeUp(index, element.name, element.time, element.trainNumber, element.volume, tabName = "tab1")
-            index++;
-        })
-       
-        let carousels = document.querySelector('.image-carousel');
-        let bubbles = document.querySelector('.bubbles');
-        
-        if(!bubbles) {
-            carousels.insertAdjacentHTML('afterend', `
-            <div class="bubbles"></div>
-            `)
-        }
-        sliderFn()
-    }   
-    else if(e.currentTarget.id === 'tab2')
-    {
-        toggleActiveTab(1, e.currentTarget)
-        inner.innerHTML = "";
-        inner.style.left="0"
-        //fetch tab 2 data here
-        //and replace with tabData
-        tabData.forEach((element, index) => {
-            htmlMakeUp(index, element.name, element.time, element.trainNumber, element.volume, tabName = "tab2")
-            index++;
-        })
-        var bubbles = document.querySelector('.bubbles')
-        if(bubbles) bubbles.remove()
-    }
-    else if(e.currentTarget.id === 'tab3')
-        {
-        toggleActiveTab(2, e.currentTarget)
-        inner.style.left="0"
-        inner.innerHTML = "";
-        //fetch tab 3 work here
-        //and replace with tabData
-        tabData.forEach((element, index) => {
-            htmlMakeUp(index, element.name, element.time, element.trainNumber, element.volume, tabName = "tab3")
-            index++;
-        })
-        var bubbles = document.querySelector('.bubbles')
-        if(bubbles) bubbles.remove()
-    }
-        
-}
-
-
-
-var sliderFn = () => {
-[].forEach.call(carousels, function (c) {
-        let next = document.querySelector('.next'),
-        prev = document.querySelector('.prev'),
-        bubblesContainer = document.querySelector('.bubbles'),
-        inner = document.querySelector('.inner'),
-        imgs = inner.querySelectorAll('.train'),
-        // imgs = inner.getElementsByTagName('img'),
-        currentImageIndex = 0,
-        width = 90;
-        bubbles = [];
-        bubblesContainer.innerHTML = ""
-        for (let i = 0; i < imgs.length; i++) {
-            let b = document.createElement('span');
-            b.classList.add('bubble');
-            bubblesContainer.appendChild(b);
-            bubbles.push(b);
-            b.addEventListener('click', function () {
-                currentImageIndex = i;
-                switchImg();
-            });
-        }
-        switchImg();
-
-        function switchImg () {
-            inner.style.left = -width * currentImageIndex + 'vw';
-            bubbles.forEach(function (b, i) {
-                if (i === currentImageIndex) 
-                {
-                    b.classList.add('active');
-                } 
-                else {
-                    b.classList.remove('active');
-                }
-            });
-        }
-        
-        prev.addEventListener('click', function () {
-            currentImageIndex--;
-
-            if (currentImageIndex < 0) {
-                currentImageIndex = imgs.length - 1;
-            }
-            
-            switchImg();
-
-        });
-
-    
-        next.addEventListener('click', function () {
-
-            currentImageIndex++;
-            
-            if (currentImageIndex >= imgs.length) {
-                currentImageIndex = 0;
-            }
-
-            switchImg();
-        });
-        
-        switchImg();
-    });
-}
-
-tab.forEach(element => {
-    element.addEventListener('click', (e) => {toggleTab(e); })
-}); 
-
-window.onload = () => {
-    sliderFn()
-}
-
-/***/ }),
-
 /***/ "./node_modules/@fortawesome/fontawesome-svg-core/index.es.js":
 /*!********************************************************************!*\
   !*** ./node_modules/@fortawesome/fontawesome-svg-core/index.es.js ***!
@@ -2907,10 +2539,10 @@ exports.svgPathData = svgPathData;
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./dist/style.css":
-/*!**************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./dist/style.css ***!
-  \**************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/style.css":
+/*!*************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/style.css ***!
+  \*************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -20219,10 +19851,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
-/***/ "./dist/style.css":
-/*!************************!*\
-  !*** ./dist/style.css ***!
-  \************************/
+/***/ "./src/style.css":
+/*!***********************!*\
+  !*** ./src/style.css ***!
+  \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -20232,7 +19864,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../node_modules/css-loader/dist/cjs.js!./style.css */ "./node_modules/css-loader/dist/cjs.js!./dist/style.css");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../node_modules/css-loader/dist/cjs.js!./style.css */ "./node_modules/css-loader/dist/cjs.js!./src/style.css");
 
             
 
@@ -20541,6 +20173,374 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "images/11d36ea717c28824bf62f562c8bb181b-RER.png");
 
+/***/ }),
+
+/***/ "./src/image-carousel.js":
+/*!*******************************!*\
+  !*** ./src/image-carousel.js ***!
+  \*******************************/
+/***/ (() => {
+
+let carousels = document.getElementsByClassName('image-carousel');
+let tab = document.querySelectorAll(".tab");
+var inner = document.querySelector(".inner")
+// var arrival = document.querySelector(".arrival")
+// var departure = document.querySelector(".departure")
+var nextFn = new Function();
+var prevFn  = new Function();
+
+var toggleActiveTab  = (tabIndex, tab) => {
+    var tabs = document.querySelectorAll('.tab')
+    var tabContent = document.querySelectorAll(".tabContent p")
+
+    // console.log(tabs, tabContent)
+    tabs.forEach(function(node){
+        node.style.backgroundColor="";
+        node.style.color="";
+    });
+    // tabs[tabIndex].childNodes[1].childNodes[0].style.color= "white"
+    tabs[tabIndex].style.backgroundColor="#494949";
+    tabs[tabIndex].style.color="white";
+    tabContent.forEach(function(node){
+        node.style.color="";
+    });
+    tabContent[tabIndex].style.color="darkgray";
+
+}
+
+var htmlMakeUp = (index, name, time, trainNumber, volume, tabName) => {
+    console.log(tabName)
+    switch (tabName) {
+        case 'tab1':
+            if(index < 1){
+                inner.innerHTML=""
+            inner.insertAdjacentHTML('afterbegin', `
+                <div>
+                    <div class="train arrival">
+                        <div class="train${index+1} trainGrid">
+                            <div class="info">
+                                <div class="infoLeftBar"></div>
+                                <div class="infoContent"><h2>${name}</h2></div>
+                            </div>
+                            <div class="time flex"><h1>${time}</h1></div>
+                            <div class="name tabContent">
+                                <b>Saint-Quentin</b>
+                                <p>TER | ${trainNumber}</p></div>
+                            <div class="volume flex">
+                                <b>voie</b>
+                                <h1>${volume}</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prev prevArrival" ></div>
+                </div>
+        
+                <div>
+                    <div class="train departure">
+                        <div class="train${index+1} trainGrid">
+                            <div class="info">
+                                <div class="infoLeftBar"></div>
+                                <div class="infoContent"><h2>${name}</h2></div>
+                            </div>
+                            <div class="time flex"><h1>${time}</h1></div>
+                            <div class="name tabContent">
+                                <b>Saint-Quentin</b>
+                                <p>TER | ${trainNumber}</p></div>
+                            <div class="volume flex">
+                                <b>voie</b>
+                                <h1>${volume}</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="next nextDeparture" ></div>
+                </div>
+            `)
+            }   
+            else {
+            var arrival = document.querySelector(".arrival")
+            arrival.insertAdjacentHTML('beforeend', `
+                <div class="train${index+1} trainGrid">
+                    <div class="info">
+                        <div class="infoLeftBar"></div>
+                        <div class="infoContent"><h2>${name}</h2></div>
+                    </div>
+                    <div class="time flex"><h1>${time}</h1></div>
+                    <div class="name tabContent">
+                        <b>Saint-Quentin</b>
+                        <p>TER | ${trainNumber}</p></div>
+                    <div class="volume flex">
+                        <b>voie</b>
+                        <h1>${volume}</h1>
+                    </div>
+                </div>
+            `)
+            var departure = document.querySelector(".departure")
+            departure.insertAdjacentHTML('beforeend', `
+                <div class="train${index+1} trainGrid">
+                    <div class="info">
+                        <div class="infoLeftBar"></div>
+                        <div class="infoContent"><h2>${name}</h2></div>
+                    </div>
+                    <div class="time flex"><h1>${time}</h1></div>
+                    <div class="name tabContent">
+                        <b>Saint-Quentin</b>
+                        <p>TER | ${trainNumber}</p></div>
+                    <div class="volume flex">
+                        <b>voie</b>
+                        <h1>${volume}</h1>
+                    </div>
+                </div>
+            `)
+            }    
+            break;
+        case 'tab2':
+            if (index < 1) {
+                inner.insertAdjacentHTML('afterbegin', `
+                <div class="train departure ">
+                    <div class="train${index+1} trainGrid">
+                        <div class="info">
+                            <div class="infoLeftBar"></div>
+                            <div class="infoContent"><h2>${name}</h2></div>
+                        </div>
+                        <div class="time flex"><h1>${time}</h1></div>
+                        <div class="name tabContent">
+                            <b>Saint-Quentin</b>
+                            <p>TER | ${trainNumber}</p>
+                        </div>
+                        <div class="volume flex">
+                            <b>voie</b>
+                            <h1>${volume}</h1>
+                        </div>
+                    </div>
+                </div>
+                `)
+            }
+            else {
+                var departure = document.querySelector(".departure")
+                departure.insertAdjacentHTML("beforeend", `
+                    <div class="train${index+1} trainGrid">
+                        <div class="info">
+                            <div class="infoLeftBar"></div>
+                            <div class="infoContent"><h2>${name}</h2></div>
+                        </div>
+                        <div class="time flex"><h1>${time}</h1></div>
+                        <div class="name tabContent">
+                            <b>Saint-Quentin</b>
+                            <p>TER | ${trainNumber}</p>
+                        </div>
+                        <div class="volume flex">
+                            <b>voie</b>
+                            <h1>${volume}</h1>
+                        </div>
+                    </div>
+                `)
+            //     document.querySelector('.departure').insertAdjacentHTML("beforeend", `
+            //     <div class="train1 trainGrid">
+            //     <div class="info">
+            //         <div class="infoLeftBar"></div>
+            //         <div class="infoContent"><h2>Aret Suppelementary</h2></div>
+            //     </div>
+            //     <div class="time flex"><h1>15:16</h1></div>
+            //     <div class="name tabContent">
+            //         <b>Saint-Quentin</b>
+            //         <p>TER | 747474</p>
+            //     </div>
+            //     <div class="volume flex">
+            //         <b>voie</b>
+            //         <h1>15</h1>
+            //     </div>
+            // </div>
+            //     `)
+            }
+            break;
+        
+        case "tab3":
+            if (index < 1) {
+                inner.insertAdjacentHTML('afterbegin', `
+                <div class="train departure ">
+                    <div class="train${index+1} trainGrid">
+                        <div class="info">
+                            <div class="infoLeftBar"></div>
+                            <div class="infoContent"><h2>${name}</h2></div>
+                        </div>
+                        <div class="time flex"><h1>${time}</h1></div>
+                        <div class="name tabContent">
+                            <b>Saint-Quentin</b>
+                            <p>TER | ${trainNumber}</p>
+                        </div>
+                        <div class="volume flex">
+                            <b>voie</b>
+                            <h1>${volume}</h1>
+                        </div>
+                    </div>
+                </div>
+                `)
+            }
+            else {
+                var departure = document.querySelector(".departure")
+                departure.insertAdjacentHTML("beforeend", `
+                    <div class="train${index+1} trainGrid">
+                        <div class="info">
+                            <div class="infoLeftBar"></div>
+                            <div class="infoContent"><h2>${name}</h2></div>
+                        </div>
+                        <div class="time flex"><h1>${time}</h1></div>
+                        <div class="name tabContent">
+                            <b>Saint-Quentin</b>
+                            <p>TER | ${trainNumber}</p>
+                        </div>
+                        <div class="volume flex">
+                            <b>voie</b>
+                            <h1>${volume}</h1>
+                        </div>
+                    </div>
+                `)
+            }
+            break;
+        default:
+            break;
+    }
+
+}
+
+var toggleTab = (e) => {
+    var tabData = [];
+
+        for (let i = 0; i < 4; i++) {
+            tabData.push(
+                tr1 = {
+                    name:`i'm one ${i+1}`,
+                    time: `${Math.ceil(Math.random()*12)}:${Math.ceil(Math.random()*61)}`,
+                    trainNumber: Math.ceil(Math.random()*1000),
+                    volume: Math.ceil(Math.random()*60),
+                },
+            )            
+        }
+    if(e.currentTarget.id === 'tab1') 
+    {
+        toggleActiveTab(0, e.currentTarget)
+        //fetch tab 1 data here
+        inner.innerHTML = "";
+        tabData.forEach((element, index, )=> {
+            htmlMakeUp(index, element.name, element.time, element.trainNumber, element.volume, tabName = "tab1")
+            index++;
+        })
+       
+        let carousels = document.querySelector('.image-carousel');
+        let bubbles = document.querySelector('.bubbles');
+        
+        if(!bubbles) {
+            carousels.insertAdjacentHTML('afterend', `
+            <div class="bubbles"></div>
+            `)
+        }
+        sliderFn()
+    }   
+    else if(e.currentTarget.id === 'tab2')
+    {
+        toggleActiveTab(1, e.currentTarget)
+        inner.innerHTML = "";
+        inner.style.left="0"
+        //fetch tab 2 data here
+        //and replace with tabData
+        tabData.forEach((element, index) => {
+            htmlMakeUp(index, element.name, element.time, element.trainNumber, element.volume, tabName = "tab2")
+            index++;
+        })
+        var bubbles = document.querySelector('.bubbles')
+        if(bubbles) bubbles.remove()
+    }
+    else if(e.currentTarget.id === 'tab3')
+        {
+        toggleActiveTab(2, e.currentTarget)
+        inner.style.left="0"
+        inner.innerHTML = "";
+        //fetch tab 3 work here
+        //and replace with tabData
+        tabData.forEach((element, index) => {
+            htmlMakeUp(index, element.name, element.time, element.trainNumber, element.volume, tabName = "tab3")
+            index++;
+        })
+        var bubbles = document.querySelector('.bubbles')
+        if(bubbles) bubbles.remove()
+    }
+        
+}
+
+
+
+var sliderFn = () => {
+[].forEach.call(carousels, function (c) {
+        let next = document.querySelector('.next'),
+        prev = document.querySelector('.prev'),
+        bubblesContainer = document.querySelector('.bubbles'),
+        inner = document.querySelector('.inner'),
+        imgs = inner.querySelectorAll('.train'),
+        // imgs = inner.getElementsByTagName('img'),
+        currentImageIndex = 0,
+        width = 90;
+        bubbles = [];
+        bubblesContainer.innerHTML = ""
+        for (let i = 0; i < imgs.length; i++) {
+            let b = document.createElement('span');
+            b.classList.add('bubble');
+            bubblesContainer.appendChild(b);
+            bubbles.push(b);
+            b.addEventListener('click', function () {
+                currentImageIndex = i;
+                switchImg();
+            });
+        }
+        switchImg();
+
+        function switchImg () {
+            inner.style.left = -width * currentImageIndex + 'vw';
+            bubbles.forEach(function (b, i) {
+                if (i === currentImageIndex) 
+                {
+                    b.classList.add('active');
+                } 
+                else {
+                    b.classList.remove('active');
+                }
+            });
+        }
+        
+        prev.addEventListener('click', function () {
+            currentImageIndex--;
+
+            if (currentImageIndex < 0) {
+                currentImageIndex = imgs.length - 1;
+            }
+            
+            switchImg();
+
+        });
+
+    
+        next.addEventListener('click', function () {
+
+            currentImageIndex++;
+            
+            if (currentImageIndex >= imgs.length) {
+                currentImageIndex = 0;
+            }
+
+            switchImg();
+        });
+        
+        switchImg();
+    });
+}
+
+tab.forEach(element => {
+    element.addEventListener('click', (e) => {toggleTab(e); })
+}); 
+
+window.onload = () => {
+    sliderFn()
+}
+
 /***/ })
 
 /******/ 	});
@@ -20665,9 +20665,9 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _dist_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../dist/style.css */ "./dist/style.css");
-/* harmony import */ var _dist_image_carousel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../dist/image-carousel */ "./dist/image-carousel.js");
-/* harmony import */ var _dist_image_carousel__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_dist_image_carousel__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
+/* harmony import */ var _image_carousel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./image-carousel */ "./src/image-carousel.js");
+/* harmony import */ var _image_carousel__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_image_carousel__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/fontawesome-svg-core */ "./node_modules/@fortawesome/fontawesome-svg-core/index.es.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons_faTrain__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faTrain */ "./node_modules/@fortawesome/free-solid-svg-icons/faTrain.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons_faSubway__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faSubway */ "./node_modules/@fortawesome/free-solid-svg-icons/faSubway.js");
