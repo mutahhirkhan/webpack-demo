@@ -13,7 +13,8 @@ html{
     --regular:300;
     --blue-bg:#26638f;
     --green-bg:#199919;
-    --purple-bg:#99154e
+    --purple-bg:#99154e;
+    --orange-color:#F98404;
 }
 body{
   font-family: var(--font-family);
@@ -123,8 +124,10 @@ body{
   overflow: hidden;
   position: relative;
   margin: auto;
+  /* animation: carousel 2s linear 1 forwards; */
   /* background: #3d84b8; */
 }
+
 
 .inner {
   display: flex;
@@ -139,20 +142,42 @@ body{
   overflow-y: scroll;
   display: grid;
   grid-template-rows: repeat(auto-fit, 1fr);
+  gap: 5px;
 }
-.trainImp {
-  /* background: #1b4969f8!important; */
+.trainImpDept {
+  background: #1b4969f8 !important;
+}
+.trainImpArr {
+  background: #137713 !important;
 }
 .arrival{
   background: var(--green-bg);
+  animation: carousel 1s linear 1 forwards;
+
 }
 .departure{
   background: var(--blue-bg);
+  animation: carousel 1s ease-in-out 1 forwards;
+}
+@keyframes carousel {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.9);
+  }
+  33%{
+    opacity: 1;
+  }
+  50%{
+    transform: scale(1.05);
+  }
+  100%{
+    transform: scale(1);
+  }
 }
 .trainGrid{
   display: grid;
-  grid-template-columns: 2fr 3fr 3fr 1fr;
-  grid-template-areas: "info time name volume";
+  grid-template-columns: 2fr 2fr 2fr 2fr 1fr;
+  grid-template-areas: "info time newTime name volume";
   height: 8em;
   color: white;
 }
@@ -168,12 +193,27 @@ body{
   border-radius: 50px;
   background: #8afa8a;
 }
+.infoImp{
+  background: var(--orange-color);
+}
+.infoContent{
+  display: flex;
+  align-items: center;
+}
 .time {
   grid-area: time;
   font-size: large;
   color: yellow;
 }
+.newTime h1{
+  grid-area: newTime;
+  background-color: var(--orange-color);
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: medium;
 
+  
+}
 .name > *, .name p  {
   color: white;
 }

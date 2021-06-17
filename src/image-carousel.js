@@ -25,8 +25,11 @@ var toggleActiveTab  = (tabIndex, tab) => {
 
 }
 
-var htmlMakeUp = (index, name, time, trainNumber, volume, tabName) => {
+var htmlMakeUp = (index, name, time, newTime, trainNumber, volume, tabName) => {
     console.log(tabName)
+    var ArrClass = newTime ? "trainImpArr": ""
+    var DeptClass = newTime ? "trainImpDept": ""
+    var infoImp = newTime ? "infoImp": ""
     switch (tabName) {
         case 'tab1':
             if(index < 1){
@@ -34,12 +37,13 @@ var htmlMakeUp = (index, name, time, trainNumber, volume, tabName) => {
             inner.insertAdjacentHTML('afterbegin', `
                 <div>
                     <div class="train arrival">
-                        <div class="train${index+1} trainGrid">
+                        <div class="train${index+1} trainGrid ${ArrClass}">
                             <div class="info">
-                                <div class="infoLeftBar"></div>
+                                <div class="infoLeftBar ${infoImp}"></div>
                                 <div class="infoContent"><h2>${name}</h2></div>
                             </div>
                             <div class="time flex"><h1>${time}</h1></div>
+                            <div class="newTime flex"><h1>${newTime ? "+"+newTime+" min" : ""}</h1></div>
                             <div class="name tabContent">
                                 <b>Saint-Quentin</b>
                                 <p>TER | ${trainNumber}</p></div>
@@ -54,12 +58,13 @@ var htmlMakeUp = (index, name, time, trainNumber, volume, tabName) => {
         
                 <div>
                     <div class="train departure">
-                        <div class="train${index+1} trainGrid">
+                        <div class="train${index+1} trainGrid ${DeptClass}">
                             <div class="info">
-                                <div class="infoLeftBar"></div>
+                                <div class="infoLeftBar ${infoImp}"></div>
                                 <div class="infoContent"><h2>${name}</h2></div>
                             </div>
                             <div class="time flex"><h1>${time}</h1></div>
+                            <div class="newTime flex"><h1>${newTime ? "+"+newTime+" min" : ""}</h1></div>
                             <div class="name tabContent">
                                 <b>Saint-Quentin</b>
                                 <p>TER | ${trainNumber}</p></div>
@@ -76,12 +81,13 @@ var htmlMakeUp = (index, name, time, trainNumber, volume, tabName) => {
             else {
             var arrival = document.querySelector(".arrival")
             arrival.insertAdjacentHTML('beforeend', `
-                <div class="train${index+1} trainGrid">
+                <div class="train${index+1} trainGrid ${ArrClass}"> 
                     <div class="info">
-                        <div class="infoLeftBar"></div>
+                        <div class="infoLeftBar ${infoImp}"></div>
                         <div class="infoContent"><h2>${name}</h2></div>
                     </div>
                     <div class="time flex"><h1>${time}</h1></div>
+                    <div class="newTime flex"><h1>${newTime ? "+"+newTime+" min" : ""}</h1></div>
                     <div class="name tabContent">
                         <b>Saint-Quentin</b>
                         <p>TER | ${trainNumber}</p></div>
@@ -93,12 +99,13 @@ var htmlMakeUp = (index, name, time, trainNumber, volume, tabName) => {
             `)
             var departure = document.querySelector(".departure")
             departure.insertAdjacentHTML('beforeend', `
-                <div class="train${index+1} trainGrid">
+                <div class="train${index+1} trainGrid ${DeptClass}">
                     <div class="info">
-                        <div class="infoLeftBar"></div>
+                        <div class="infoLeftBar ${infoImp}"></div>
                         <div class="infoContent"><h2>${name}</h2></div>
                     </div>
                     <div class="time flex"><h1>${time}</h1></div>
+                    <div class="newTime flex"><h1>${newTime ? "+"+newTime+" min" : ""}</h1></div>
                     <div class="name tabContent">
                         <b>Saint-Quentin</b>
                         <p>TER | ${trainNumber}</p></div>
@@ -110,17 +117,19 @@ var htmlMakeUp = (index, name, time, trainNumber, volume, tabName) => {
             `)
             }    
             break;
+
         case 'tab2':
             if (index < 1) {
                 inner.insertAdjacentHTML('afterbegin', `
                 <div class="train departure ">
-                    <div class="train${index+1} trainGrid">
+                    <div class="train${index+1} trainGrid ${DeptClass}">
                         <div class="info">
-                            <div class="infoLeftBar"></div>
+                            <div class="infoLeftBar ${infoImp}"></div>
                             <div class="infoContent"><h2>${name}</h2></div>
                         </div>
                         <div class="time flex"><h1>${time}</h1></div>
-                        <div class="name tabContent">
+                            <div class="newTime flex"><h1>${newTime ? "+"+newTime+" min" : ""}</h1></div>
+                            <div class="name tabContent">
                             <b>Saint-Quentin</b>
                             <p>TER | ${trainNumber}</p>
                         </div>
@@ -135,13 +144,14 @@ var htmlMakeUp = (index, name, time, trainNumber, volume, tabName) => {
             else {
                 var departure = document.querySelector(".departure")
                 departure.insertAdjacentHTML("beforeend", `
-                    <div class="train${index+1} trainGrid">
+                    <div class="train${index+1} trainGrid ${DeptClass}">
                         <div class="info">
-                            <div class="infoLeftBar"></div>
+                            <div class="infoLeftBar ${infoImp}"></div>
                             <div class="infoContent"><h2>${name}</h2></div>
                         </div>
                         <div class="time flex"><h1>${time}</h1></div>
-                        <div class="name tabContent">
+                            <div class="newTime flex"><h1>${newTime ? "+"+newTime+" min" : ""}</h1></div>
+                            <div class="name tabContent">
                             <b>Saint-Quentin</b>
                             <p>TER | ${trainNumber}</p>
                         </div>
@@ -154,7 +164,7 @@ var htmlMakeUp = (index, name, time, trainNumber, volume, tabName) => {
             //     document.querySelector('.departure').insertAdjacentHTML("beforeend", `
             //     <div class="train1 trainGrid">
             //     <div class="info">
-            //         <div class="infoLeftBar"></div>
+            //         <div class="infoLeftBar ${infoImp}"></div>
             //         <div class="infoContent"><h2>Aret Suppelementary</h2></div>
             //     </div>
             //     <div class="time flex"><h1>15:16</h1></div>
@@ -175,13 +185,14 @@ var htmlMakeUp = (index, name, time, trainNumber, volume, tabName) => {
             if (index < 1) {
                 inner.insertAdjacentHTML('afterbegin', `
                 <div class="train departure ">
-                    <div class="train${index+1} trainGrid">
+                    <div class="train${index+1} trainGrid ${DeptClass}">
                         <div class="info">
-                            <div class="infoLeftBar"></div>
+                            <div class="infoLeftBar ${infoImp}"></div>
                             <div class="infoContent"><h2>${name}</h2></div>
                         </div>
                         <div class="time flex"><h1>${time}</h1></div>
-                        <div class="name tabContent">
+                            <div class="newTime flex"><h1>${newTime ? "+"+newTime+" min" : ""}</h1></div>
+                            <div class="name tabContent">
                             <b>Saint-Quentin</b>
                             <p>TER | ${trainNumber}</p>
                         </div>
@@ -196,13 +207,14 @@ var htmlMakeUp = (index, name, time, trainNumber, volume, tabName) => {
             else {
                 var departure = document.querySelector(".departure")
                 departure.insertAdjacentHTML("beforeend", `
-                    <div class="train${index+1} trainGrid">
+                    <div class="train${index+1} trainGrid ${DeptClass}">
                         <div class="info">
-                            <div class="infoLeftBar"></div>
+                            <div class="infoLeftBar ${infoImp}"></div>
                             <div class="infoContent"><h2>${name}</h2></div>
                         </div>
                         <div class="time flex"><h1>${time}</h1></div>
-                        <div class="name tabContent">
+                            <div class="newTime flex"><h1>${newTime ? "+"+newTime+" min" : ""}</h1></div>
+                            <div class="name tabContent">
                             <b>Saint-Quentin</b>
                             <p>TER | ${trainNumber}</p>
                         </div>
@@ -228,6 +240,7 @@ var toggleTab = (e) => {
                 tr1 = {
                     name:`i'm one ${i+1}`,
                     time: `${Math.ceil(Math.random()*12)}:${Math.ceil(Math.random()*61)}`,
+                    newTime: Math.floor(Math.random() * 2),
                     trainNumber: Math.ceil(Math.random()*1000),
                     volume: Math.ceil(Math.random()*60),
                 },
@@ -239,7 +252,7 @@ var toggleTab = (e) => {
         //fetch tab 1 data here
         inner.innerHTML = "";
         tabData.forEach((element, index, )=> {
-            htmlMakeUp(index, element.name, element.time, element.trainNumber, element.volume, tabName = "tab1")
+            htmlMakeUp(index, element.name, element.time, element.newTime, element.trainNumber, element.volume, tabName = "tab1")
             index++;
         })
        
@@ -261,7 +274,7 @@ var toggleTab = (e) => {
         //fetch tab 2 data here
         //and replace with tabData
         tabData.forEach((element, index) => {
-            htmlMakeUp(index, element.name, element.time, element.trainNumber, element.volume, tabName = "tab2")
+            htmlMakeUp(index, element.name, element.time, element.newTime, element.trainNumber, element.volume, tabName = "tab2")
             index++;
         })
         var bubbles = document.querySelector('.bubbles')
@@ -275,7 +288,7 @@ var toggleTab = (e) => {
         //fetch tab 3 work here
         //and replace with tabData
         tabData.forEach((element, index) => {
-            htmlMakeUp(index, element.name, element.time, element.trainNumber, element.volume, tabName = "tab3")
+            htmlMakeUp(index, element.name, element.time, element.newTime, element.trainNumber, element.volume, tabName = "tab3")
             index++;
         })
         var bubbles = document.querySelector('.bubbles')
