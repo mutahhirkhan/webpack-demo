@@ -5,9 +5,12 @@ module.exports = {
   devtool:  false ,
   mode:"development",
   entry: './src/index.js',
+  devServer: {
+    contentBase: './dist',
+  },
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'), 
     // hot: true,
   },
   module: {
