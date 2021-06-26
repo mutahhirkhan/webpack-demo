@@ -142,8 +142,33 @@ body{
   overflow-y: scroll;
   display: grid;
   grid-template-rows: repeat(auto-fit, 1fr);
-  gap: 5px;
 }
+.arrivalDepartureShift{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  color: white;
+  font-weight: normal;
+  font-size: medium;
+  margin: 1rem 0;
+  visibility: hidden;
+  
+  
+}
+.shiftDeparture{
+  padding-bottom: 1rem;
+  border-bottom: 2px solid white;
+}
+.shiftArrival{
+  padding-bottom: 1rem;
+  border-bottom: 2px solid white;
+}
+.changeBorder{ 
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5) !important;
+}
+
+
+
 .trainImpDept {
   background: #1b4969f8 !important;
 }
@@ -178,8 +203,9 @@ body{
   display: grid;
   grid-template-columns: 2fr 2fr 2fr 2fr 1fr;
   grid-template-areas: "info time newTime name volume";
-  height: 8em;
+  height: 8.3em;
   color: white;
+  padding: 0 1em;
 }
 .info {
   grid-area: info;
@@ -205,14 +231,13 @@ body{
   font-size: large;
   color: yellow;
 }
+
 .newTime h1{
   grid-area: newTime;
   background-color: var(--orange-color);
   padding: 4px 10px;
   border-radius: 5px;
   font-size: medium;
-
-  
 }
 .name > *, .name p  {
   color: white;
@@ -319,7 +344,35 @@ body{
     padding: 0 5px;
   }
   .train{
-    padding: 3em 7em;
+    padding: 1em 7em;
   }
-  
+}
+
+@media only screen and (max-width: 700px) {
+  .tab{
+    grid-template-columns: 1fr;
+  }
+  .icon{
+    display: none;
+  }
+  .arrivalDepartureShift{
+    visibility: visible;
+  }
+  .train{
+    width: 90vw;
+    padding: 0 7em;
+    height: 320px;
+    overflow-y: scroll;
+    display: grid;
+    grid-template-rows: repeat(auto-fit, 1fr);
+  }
+  .trainGrid{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 2fr 1fr;
+    grid-template-areas: "info time newTime name volume";
+    height: 8.3em;
+    color: white;
+    padding: 0 1em;
+  }
+
 }
